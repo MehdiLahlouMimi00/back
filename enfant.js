@@ -35,6 +35,11 @@ const enfantSchema = mongoose.Schema({
         type : String
     },
 
+    genre : {
+        type : String,
+        required : [true, "le genre"]
+    },
+
     password : {
         type : String
     },
