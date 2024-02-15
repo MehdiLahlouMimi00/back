@@ -4,6 +4,7 @@ const asyncHandler = require("express-async-handler");
 const mongoose = require("mongoose")
 const Onde = require("./onde");
 const Plainte = require("./plainte");
+const Enfant = require("./enfant");
 
 
 const server = express();
@@ -11,8 +12,9 @@ const server = express();
 server.use(express.json());
 
 server.use(cors({
-    origin: 'http://localhost:3000'
-  }));
+    origin: '*'
+}));
+
 let MONGO_URI = "mongodb+srv://test:FQnLMsckvMJzEWBa@cluster0.rrzxcyj.mongodb.net/?retryWrites=true&w=majority";
 
 
@@ -64,6 +66,7 @@ server.get("/plaintes/:id", async (req, res) => {
 
 
 server.post("/plaintes", async (req, res) => {
+    console.log("plainte");
     const newPlainte = new Plainte(req.body);
     newPlainte.save()
         .then(result => res.json({ created: true }))
@@ -73,7 +76,15 @@ server.post("/plaintes", async (req, res) => {
         });
 });
 
-
+server.post("/loginenfant", async (req, res) => {
+    const {l, p} = req.body;
+    const a = Enfant.find({mail: l, password : p});
+    if (a.length > 0) {
+        res.json({ access: true});
+    } else {
+        res.json({ access : false });
+    }
+})
 
 
 mongoose.connect(MONGO_URI, {
