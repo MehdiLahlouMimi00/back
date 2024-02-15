@@ -2,28 +2,23 @@ const mongoose = require("mongoose");
 
 const plainteSchema = mongoose.Schema({
     Date : {
-        type : String,
-        required : [true, "Date obligatoire"]
+        type : String
     },
 
     Profile : {
-        type : Object,
-        required : [true, "oui"]
+        type : Object
     },
 
     type : {
-        type : String,
-        required : [true, "oui"]
+        type : String
     },
 
     importance : {
-        type : String,
-        required : [true, "oui"]
+        type : String
     },
 
     data : {
-        type : Object,
-        required : [true, "oui"]
+        type : Object
     }
 },{ timestamps: true }
 );
