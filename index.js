@@ -78,7 +78,7 @@ server.post("/plaintes", async (req, res) => {
 
 server.post("/loginenfant", async (req, res) => {
     const {l, p} = req.body;
-    const a = Enfant.find({mail: l, password : p});
+    const a = await Enfant.find({mail: l, password : p});
     if (a.length > 0) {
         res.json({ access: true});
     } else {
